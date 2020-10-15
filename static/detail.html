@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {{index .Hostnames 0}}
+    </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body style="background-color: #222222">
+<nav class="navbar" style="background-color: #375a7f">
+    <a class="navbar-brand text-white" href="/host">Home</a>
+</nav>
+<div class="container">
+    <div class="card bg-dark" style="margin-top: 1rem">
+        <div class="card-body">
+            <h3 class="card-title text-white">
+                {{index .Hostnames 0}}
+            </h3>
+            <p class="card-text text-white">
+            <hr>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h5><strong class="text-white">Adresses</strong></h5>
+                </div>
+                <div class="col-sm text-white" >
+                    {{range $addr := .Addresses}}
+                        Type: {{$addr.AddrType}}
+                        <br>
+                        Address: <a href="http://{{$addr.Addr}}">{{$addr.Addr}}</a>
+                        <br><br>
+                    {{end}}
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h5><strong class="text-white">Ports</strong></h5>
+                </div>
+                <div class="col-sm text-white">
+                    {{range $port := .Ports}}
+                        Port: {{$port.ID}}
+                        <br>
+                        Protocol: {{$port.Protocol}}
+                        <br>
+                        Service: {{$port.Service.Name}}
+                        <br><br>
+                    {{end}}
+                </div>
+            </div>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

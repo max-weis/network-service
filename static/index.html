@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Network Service</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body style="background-color: #222222">
+<nav class="navbar" style="background-color: #375a7f">
+    <a class="navbar-brand text-white" href="/host">Home</a>
+</nav>
+<div class="container">
+    <br>
+    <div class="row">
+        {{range $host := .}}
+            <div class="col-sm-4">
+                <div class="card bg-dark" style="margin-top: 1rem">
+                    <div class="card-body">
+                        <h5 class="card-title text-white">
+                            {{index $host.Hostnames 0}}
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            {{index $host.Addresses 0}}
+                        </h6>
+                        <p class="card-text">
+                            {{if eq $host.Status.State "up"}}
+                                <a type="button" class="btn btn-primary" href="/host/{{index $host.Hostnames 0}}">See
+                                    details</a>
+                            {{else}}
+                                <button type="button" class="btn btn-secondary" disabled>Down</button>
+                            {{end}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {{end}}
+    </div>
+</div>
+</body>
+</html>
